@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
+import 'package:sindeby_dating_app/views/screen/Auth/reset_password_screen.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   const OtpVerifyScreen({super.key});
@@ -46,7 +48,9 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
             onSubmit: (String verificationCode) {},
           ),
           SizedBox(height: 32,),
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.to(()=> ResetPasswordScreen());
+          },
               text: "Verify"),
           SizedBox(height: 33,),
           Center(
