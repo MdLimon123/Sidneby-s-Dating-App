@@ -6,6 +6,7 @@ import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/screen/Auth/reset_password_screen.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen1.dart';
 
 class EmailVerifyScreen extends StatefulWidget {
   const EmailVerifyScreen({super.key});
@@ -49,7 +50,7 @@ class _EmailVerifyScreenState extends State<EmailVerifyScreen> {
             ),
             SizedBox(height: 32,),
             CustomButton(onTap: (){
-              Get.to(()=> ResetPasswordScreen());
+              Get.to(()=> OnboardScreen1());
             },
                 text: "Verify"),
             SizedBox(height: 33,),
