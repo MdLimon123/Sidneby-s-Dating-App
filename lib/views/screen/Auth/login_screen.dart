@@ -6,6 +6,7 @@ import 'package:sindeby_dating_app/helpers/route.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/Auth/forget_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -71,12 +72,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: AppColors.textColor,
               ),),
               Spacer(),
-              Text('Forgot Password?',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.primaryColor,
-                ),),
+              InkWell(
+                onTap: (){
+                  Get.to(()=> ForgetScreen());
+                },
+                child: Text('Forgot Password?',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.primaryColor,
+                  ),),
+              ),
             ],
           ),
           SizedBox(height: 32,),
