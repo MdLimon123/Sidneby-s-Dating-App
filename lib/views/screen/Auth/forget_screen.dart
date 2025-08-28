@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/Auth/otp_verify_screen.dart';
 
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});
@@ -39,7 +41,9 @@ class _ForgetScreenState extends State<ForgetScreen> {
           CustomTextField(controller: emailTextController,
           hintText: 'Enter your email',),
           SizedBox(height: 32,),
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.to(() => OtpVerifyScreen());
+          },
               text: "Send OTP")
         ],
       ),

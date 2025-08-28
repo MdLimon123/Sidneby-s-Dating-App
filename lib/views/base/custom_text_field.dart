@@ -124,12 +124,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 obscureText ? Icons.visibility_off : Icons.visibility),
           )
               : widget.suffixIcon,
-          prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
+          prefixIconConstraints: BoxConstraints(minHeight: 24, minWidth: 24),
           labelText: widget.labelText,
           hintText: widget.hintText,
           hintStyle: TextStyle(
             color: AppColors.textColor,
-            fontSize: 14.sp,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
         ),
