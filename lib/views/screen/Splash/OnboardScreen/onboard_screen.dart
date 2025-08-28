@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/utils/statusbar_color_setup.dart';
+import 'package:sindeby_dating_app/views/screen/Auth/login_screen.dart';
 
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
@@ -93,7 +95,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
               ),
             ),
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -124,7 +125,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-
+                            Get.to(()=> LoginScreen());
                           },
                           child: Text(
                             "Skip",
@@ -147,6 +148,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       child: GestureDetector(
                         onTap: () {
                           if (_currentPage == _onboardingData.length - 1) {
+                            Get.to(()=> LoginScreen());
 
                           } else {
                             _pageController.nextPage(

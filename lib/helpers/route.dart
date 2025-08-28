@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sindeby_dating_app/views/screen/Auth/signup_screen.dart';
 import 'package:sindeby_dating_app/views/screen/Home/home_screen.dart';
 import 'package:sindeby_dating_app/views/screen/Profile/profile_screen.dart';
 import 'package:sindeby_dating_app/views/screen/Splash/OnboardScreen/onboard_screen.dart';
@@ -14,6 +15,7 @@ class AppRoutes{
   static String profileScreen="/profile_screen";
   static String walletScreen="/wallet_screen";
   static String onboardScreen = "/onboard_screen";
+  static String signupScreen = "/signup_screen";
 
  static List<GetPage> page=[
     GetPage(name:splashScreen, page: ()=>const SplashScreen()),
@@ -21,6 +23,7 @@ class AppRoutes{
     GetPage(name:walletScreen, page: ()=>const WalletScreen()),
     GetPage(name:profileScreen, page: ()=>const ProfileScreen()),
     GetPage(name:onboardScreen, page: ()=>const OnboardScreen()),
+    GetPage(name:signupScreen, page: ()=>const SignupScreen()),
 
   ];
 
