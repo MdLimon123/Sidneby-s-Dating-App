@@ -1,9 +1,11 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen3.dart';
 
 class CountryPickOnboardScreen extends StatefulWidget {
   const CountryPickOnboardScreen({super.key});
@@ -101,8 +103,10 @@ class _CountryPickOnboardScreenState extends State<CountryPickOnboardScreen> {
           SizedBox(height: 8,),
           CustomTextField(controller: stateTextController,
           hintText: 'Enter your state',),
-          SizedBox(height: 18 0,),
-          CustomButton(onTap: (){},
+          SizedBox(height: 180,),
+          CustomButton(onTap: (){
+            Get.to(()=> OnboardScreen3());
+          },
               text: "Next")
 
         ]
