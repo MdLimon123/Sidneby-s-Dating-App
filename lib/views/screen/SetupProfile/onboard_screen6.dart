@@ -6,6 +6,7 @@ import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_checkbox.dart';
 import 'package:sindeby_dating_app/views/base/custom_switch.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen7.dart';
 
 class OnboardScreen6 extends StatefulWidget {
   const OnboardScreen6({super.key});
@@ -196,7 +197,7 @@ class _OnboardScreen6State extends State<OnboardScreen6> {
           SizedBox(height: 20,),
 
           CustomButton(onTap: (){
-            Get.to(()=> OnboardScreen6());
+            Get.to(()=> OnboardScreen7());
 
           }, text: "Next")
 
