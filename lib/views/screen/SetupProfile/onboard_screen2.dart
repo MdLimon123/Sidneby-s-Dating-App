@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/country_pick_onboard_screen.dart';
 
 class OnboardScreen2 extends StatefulWidget {
   const OnboardScreen2({super.key});
@@ -83,7 +85,9 @@ class _OnboardScreen2State extends State<OnboardScreen2> {
             ],
           ),
           SizedBox(height: 100,),
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.to(()=> CountryPickOnboardScreen());
+          },
               text: "Next")
 
         ],

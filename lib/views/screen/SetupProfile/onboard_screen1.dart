@@ -22,6 +22,7 @@ class _OnboardScreen1State extends State<OnboardScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 95),

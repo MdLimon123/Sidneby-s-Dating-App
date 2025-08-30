@@ -21,6 +21,7 @@ dependencies:
   flutter_svg:
   flutter_spinkit:
   flutter_otp_text_field:
+  country_code_picker: ^3.4.0
 
 dev_dependencies:
   flutter_test:
