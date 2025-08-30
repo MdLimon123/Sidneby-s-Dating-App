@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_radio_button.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen5.dart';
 
 class OnboardScreen4 extends StatefulWidget {
   const OnboardScreen4({super.key});
@@ -168,7 +170,9 @@ class _OnboardScreen4State extends State<OnboardScreen4> {
           ),
           SizedBox(height: 20,),
 
-          CustomButton(onTap: (){}, text: "Next")
+          CustomButton(onTap: (){
+            Get.to(()=> OnboardScreen5());
+          }, text: "Next")
 
 
         ],
