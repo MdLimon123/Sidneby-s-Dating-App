@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen4.dart';
 
 class OnboardScreen3 extends StatefulWidget {
   const OnboardScreen3({super.key});
@@ -59,7 +61,9 @@ class _OnboardScreen3State extends State<OnboardScreen3> {
          hintText: 'Enter your college or university',),
           SizedBox(height: 180,),
 
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.to(()=> OnboardScreen4());
+          },
               text: "Next")
 
         ],
