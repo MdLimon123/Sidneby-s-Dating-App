@@ -86,7 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
           SizedBox(height: 32,),
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.offAllNamed(AppRoutes.homeScreen);
+          },
               text: "Login"),
           SizedBox(height: 33,),
           Row(

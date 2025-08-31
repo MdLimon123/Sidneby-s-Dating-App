@@ -38,25 +38,25 @@ class BottomMenu extends StatelessWidget {
     final theme = Theme.of(context);
     List<BottomNavigationBarItem> menuItems = [
       getItem(AppIcons.homeIcon, 'Home', theme, 0),
-      getItem(AppIcons.walletIcon, 'Wallet', theme, 1),
-      getItem(AppIcons.profileIcon, 'Profile', theme, 2),
+      getItem(AppIcons.exploreIcon, 'Explore', theme, 1),
+      getItem(AppIcons.favoriteIcon, 'Like You', theme, 2),
+      getItem(AppIcons.chatIcon, 'Chat', theme, 3),
+      getItem(AppIcons.profileIcon, 'Profile', theme, 4),
     ];
 
     return Container(
 
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.r),topLeft: Radius.circular(20.r)
-          ),
-          boxShadow: const [
-            BoxShadow(color:Colors.black38,spreadRadius:0,blurRadius: 10)
+          boxShadow:  [
+            BoxShadow(
+                color:Color(0xFF2EAED2).withValues(alpha: .20),
+                offset: Offset(0,-4),
+                spreadRadius:0,
+                blurRadius: 9)
           ]
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20.r),topLeft: Radius.circular(20.r)
 
-        ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           
@@ -69,9 +69,15 @@ class BottomMenu extends StatelessWidget {
                 Get.offAndToNamed(AppRoutes.homeScreen);
                 break;
               case 1:
-                Get.offAndToNamed(AppRoutes.walletScreen);
+                Get.offAndToNamed(AppRoutes.exploreScreen);
                 break;
               case 2:
+                Get.offAndToNamed(AppRoutes.favoriteScreen);
+                break;
+              case 3:
+                Get.offAndToNamed(AppRoutes.inboxScreen);
+              break;
+              case 4:
                 Get.offAndToNamed(AppRoutes.profileScreen);
                 break;
             }

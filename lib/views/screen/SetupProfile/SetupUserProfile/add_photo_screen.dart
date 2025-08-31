@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/SetupUserProfile/terms_and_condition_screen.dart';
 
 class AddPhotoScreen extends StatefulWidget {
   const AddPhotoScreen({super.key});
@@ -174,7 +176,9 @@ class _AddPhotoScreenState extends State<AddPhotoScreen> {
             },
           ),
           SizedBox(height: 130,),
-          CustomButton(onTap: (){},
+          CustomButton(onTap: (){
+            Get.to(()=> TermsAndConditionScreen());
+          },
               text: "Next")
 
         ]
