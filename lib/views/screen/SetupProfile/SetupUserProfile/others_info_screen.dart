@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
+import 'package:sindeby_dating_app/views/screen/SetupProfile/SetupUserProfile/height_screen.dart';
 import 'package:sindeby_dating_app/views/screen/SetupProfile/onboard_screen2.dart';
 
 class OthersScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _OthersScreenState extends State<OthersScreen> {
                 ),),
               Spacer(),
               CustomButton(onTap: (){
-                Get.to(()=> OnboardScreen2());
+                Get.to(()=> HeightScreen());
               },
                   text:"Continue"),
               SizedBox(height: 24,),
