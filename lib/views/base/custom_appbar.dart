@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget{
-
   const CustomAppbar({super.key,});
 
   @override

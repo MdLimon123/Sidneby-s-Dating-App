@@ -65,7 +65,7 @@ class _MyStoryViewerState extends State<MyStoryViewer> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: const [BoxShadow(
-                            color: Colors.black26, blurRadius: 14, offset: Offset(0, 8),
+                             color: Colors.black26, blurRadius: 14, offset: Offset(0, 8),
                           )],
                         ),
                         child: Stack(
