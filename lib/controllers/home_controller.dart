@@ -131,31 +131,35 @@ class HomeController extends GetxController{
     } else {
       currentIndex.value = 0;
     }
-    startProgress();
   }
 
   void previousStory() {
     if (currentIndex.value > 0) {
       currentIndex.value--;
-      startProgress();
+    } else {
+      currentIndex.value = stories.length - 1;
     }
   }
+
 
   void resetGesture() {
     dragDx = 0;
     _handledThisGesture = false;
   }
 
+
   bool handleGesture(double dx) {
     dragDx += dx;
-    return dragDx.abs() >= 40;
+    return true;
   }
+
 
   bool consumeGesture() {
     if (_handledThisGesture) return false;
     _handledThisGesture = true;
     return true;
   }
+
 
   @override
   void onClose() {
