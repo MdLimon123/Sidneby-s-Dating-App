@@ -34,9 +34,9 @@ class _MyStoryViewerState extends State<MyStoryViewer> {
 
   @override
   Widget build(BuildContext context) {
-    // panel geometry (keep at top of build)
-    final double ph = MediaQuery.of(context).size.height * 0.88; // panel height
-   // final double peek = 40.0;                                    // visible when closed
+
+    final double ph = MediaQuery.of(context).size.height * 0.88;
+                      // visible when closed
     final double inset = MediaQuery.of(context).padding.bottom;   // safe area bottom
     final double closedBottom = -ph  - inset;
 
@@ -185,14 +185,20 @@ class _MyStoryViewerState extends State<MyStoryViewer> {
                           ),
                         ),
                         const Spacer(),
-                        // icon box + text (one line, screenshot-like)
-                        Column(
-                          children: [
-                            SvgPicture.asset('assets/icons/video.svg'),
-                            const SizedBox(height: 8),
-                             Text("Add story", style: TextStyle(fontSize: 12,
-                                color: AppColors.textColor)),
-                          ],
+
+                        InkWell(
+                          onTap: (){
+                            _myStoryController.pickAddStoryImage(fromCamera: false);
+
+                          },
+                          child: Column(
+                            children: [
+                              SvgPicture.asset('assets/icons/video.svg'),
+                              const SizedBox(height: 8),
+                               Text("Add story", style: TextStyle(fontSize: 12,
+                                  color: AppColors.textColor)),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -365,7 +371,7 @@ class _ViewersPanel extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return _AddStoryCard(onTap: () {/* hook your picker */});
+                      return _AddStoryCard(onTap: () {});
                     }
                   },
                 )),

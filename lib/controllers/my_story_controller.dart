@@ -1,11 +1,16 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:sindeby_dating_app/models/view_model.dart';
+import 'package:sindeby_dating_app/utils/image_utils.dart';
+import 'package:sindeby_dating_app/views/screen/Home/AllSubScreen/add_story_screen.dart';
 
 class MyStoryController extends GetxController {
   final userName = "Jessi smith".obs;
   final timeAgo  = "36m ago".obs;
+
+  Rx<File?> pickStory = Rx<File?>(null);
 
   final myStories = <String>[
     "assets/image/dummay2.jpg",
@@ -57,6 +62,22 @@ class MyStoryController extends GetxController {
   }
 
 
+
+
+  Future<void> pickAddStoryImage({bool fromCamera = false})async{
+
+    final pickedFile = await ImageUtils.pickAndCropImage(fromCamera: fromCamera);
+
+    if(pickedFile != null){
+
+      Get.to(()=> AddStoryScreen(
+        imagePath: pickedFile.path,
+      ));
+    }else{
+      //Get.back();
+    }
+
+  }
 
   // ONE SCREEN panel toggle
   final showViewers = false.obs;
