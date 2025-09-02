@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/appbar.dart';
+import 'package:sindeby_dating_app/views/screen/Home/AllSubScreen/report_an_issue_screen.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -218,7 +219,9 @@ class _DetailsPageState extends State<DetailsPage> {
           SizedBox(height: 8,),
           _customButton(
               text: 'Repot An Issue ',
-              onTap: () {},
+              onTap: () {
+                Get.to(()=> ReportAnIssueScreen());
+              },
               textColor: Color(0xFFBC0000)
           ),
           SizedBox(height: 17,),
