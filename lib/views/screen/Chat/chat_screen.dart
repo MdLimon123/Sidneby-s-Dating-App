@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
+import 'package:sindeby_dating_app/views/screen/Chat/audio_call_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -68,7 +69,11 @@ class _ChatScreenState extends State<ChatScreen> {
               ],
             ),
             Spacer(),
-            SvgPicture.asset('assets/icons/phone.svg'),
+            InkWell(
+              onTap: (){
+                Get.to(()=> AudioCallScreen());
+              },
+                child: SvgPicture.asset('assets/icons/phone.svg')),
             SizedBox(width: 10,),
             PopupMenuButton(
                 color: Color(0xFFD9D9D9),
