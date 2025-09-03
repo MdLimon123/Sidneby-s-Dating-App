@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 
 class AudioCallScreen extends StatefulWidget {
@@ -16,7 +17,11 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
-        leading: Icon(Icons.arrow_back, color: AppColors.textColor,),
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+            child: Icon(Icons.arrow_back, color: AppColors.textColor,)),
       ),
       body:Column(
 
