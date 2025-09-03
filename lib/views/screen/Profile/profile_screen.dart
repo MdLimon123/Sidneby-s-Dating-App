@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_switch.dart';
 import 'package:sindeby_dating_app/views/screen/Profile/AllSubScreen/edit_profile_screen.dart';
+import 'package:sindeby_dating_app/views/screen/Profile/AllSubScreen/subscription_screen.dart';
 
 import '../../base/bottom_menu..dart';
 
@@ -69,7 +70,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: 16,),
                   _customContainer(
-                    onTap: (){},
+                    onTap: (){
+                      Get.to(()=> SubscriptionScreen());
+                    },
                       imagePath: 'assets/icons/subscription.svg',
                       text: 'Subscription'
                   ),
