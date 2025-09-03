@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/bottom_menu..dart';
+import 'package:sindeby_dating_app/views/screen/Favorite/favorite_details_screen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -26,74 +28,79 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           childAspectRatio: .8,
         ),
         itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: AssetImage('assets/image/dummay2.jpg'),
-                      fit: BoxFit.cover,
+          return InkWell(
+            onTap: (){
+              Get.to(()=> FavoriteDetailsScreen());
+            },
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: AssetImage('assets/image/dummay2.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-              ),
 
-              Positioned(
-                bottom: 5,
-                left: 10,
-                right: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: const [
-                        Icon(
-                          Icons.circle,
-                          color: Color(0xFF00CD07),
-                          size: 12,
-                        ),
-                        SizedBox(width: 4),
-                        Text(
-                          "Active",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                Positioned(
+                  bottom: 5,
+                  left: 10,
+                  right: 20,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: const [
+                          Icon(
+                            Icons.circle,
+                            color: Color(0xFF00CD07),
+                            size: 12,
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      "Jhon Mandela",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                          SizedBox(width: 4),
+                          Text(
+                            "Active",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 5),
-
-                    Row(
-                      children: [
-                        Icon(Icons.location_on, color: Colors.white),
-                        SizedBox(width: 2),
-                        Text(
-                          "1.0 km",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 8,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      const SizedBox(height: 5),
+                      const Text(
+                        "Jhon Mandela",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(height: 5),
+
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.white),
+                          SizedBox(width: 2),
+                          Text(
+                            "1.0 km",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 8,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

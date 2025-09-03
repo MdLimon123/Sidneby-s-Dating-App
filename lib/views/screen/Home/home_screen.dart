@@ -184,176 +184,323 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(height: 12),
 
-          /// Story View
+          /// Near you
 
 
-          SizedBox(
-            height: 400,
-            child: GestureDetector(
-              onPanStart: (_) => _homeController.resetGesture(),
-              onPanUpdate: (details) {
-                _homeController.handleGesture(details.delta.dx);
-              },
-              onPanEnd: (_) {
-                if (!_homeController.consumeGesture()) return;
-
-                if (_homeController.dragDx <- 100) {
-                  // 👉 Right swipe = Like
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("👍 Liked"),
-                      backgroundColor: Colors.green,
-                      duration: Duration(seconds: 1),
-                      behavior: SnackBarBehavior.floating,
+          Stack(
+            children: [
+              
+            
+              Obx(
+               ()=> Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        _homeController
+                            .stories[_homeController.currentIndex.value-1],
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                  );
-                  _homeController.nextStory();
-                } else if (_homeController.dragDx > 100) {
-                  // 👉 Left swipe = Dislike
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("👎 Disliked"),
-                      backgroundColor: Colors.red,
-                      duration: Duration(seconds: 1),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                  _homeController.nextStory(); // ⬅️ next image e jabe
-                }
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 400,
+                child: Obx(() {
+                  double dx = _homeController.dragDx;
 
-                // Reset card position after swipe
-                _homeController.resetGesture();
-              },
-              onTapDown: (details) {
-                final width = MediaQuery.of(context).size.width;
-                if (details.globalPosition.dx < width / 2) {
-                  _homeController.previousStory();
-                } else {
-                  _homeController.nextStory();
-                }
-              },
-              child: Obx(() {
-                double dx = _homeController.dragDx;
-
-                return Transform.translate(
-                  offset: Offset(dx, 0),
-                  child: Transform.rotate(
-                    angle: dx * 0.002, // tilt effect
-                    child: Stack(
-                      children: [
-                        // Image
-                        Positioned.fill(
-                          child: InkWell(
-                            onTap: () {
-                           Get.to(()=> DetailsPage());
-                  },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    _homeController
-                                        .stories[_homeController.currentIndex.value],
+                  return Transform.translate(
+                    offset: Offset(dx, 0),
+                    child: Transform.rotate(
+                      origin: Offset(0,200),
+                      angle: dx * 0.004, // tilt effect
+                      child: Stack(
+                        children: [
+                          // Image
+                          Positioned.fill(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(()=> DetailsPage());
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      _homeController
+                                          .stories[_homeController.currentIndex.value],
+                                    ),
+                                    fit: BoxFit.cover,
                                   ),
-                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                           ),
-                        ),
 
-                        // Progress bar (unchanged)
-                        Positioned(
-                          top: 20,
-                          left: 10,
-                          right: 10,
-                          child: Obx(
-                                () => Row(
-                              children: List.generate(
-                                _homeController.stories.length,
-                                    (index) {
-                                  return Expanded(
-                                    child: Padding(
-                                      padding:
-                                      const EdgeInsets.symmetric(horizontal: 2),
-                                      child: LinearProgressIndicator(
-                                        value: index ==
-                                            _homeController.currentIndex.value
-                                            ? _homeController.progressValue.value
-                                            : (index <
-                                            _homeController.currentIndex.value
-                                            ? 1
-                                            : 0),
-                                        backgroundColor: Colors.white,
-                                        valueColor:
-                                        const AlwaysStoppedAnimation<Color>(
-                                          Color(0xFF2EAED2),
+                          // Progress bar (unchanged)
+                          Positioned(
+                            top: 20,
+                            left: 10,
+                            right: 10,
+                            child: Obx(
+                                  () => Row(
+                                children: List.generate(
+                                  _homeController.stories.length,
+                                      (index) {
+                                    return Expanded(
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.symmetric(horizontal: 2),
+                                        child: LinearProgressIndicator(
+                                          value: index ==
+                                              _homeController.currentIndex.value
+                                              ? _homeController.progressValue.value
+                                              : (index <
+                                              _homeController.currentIndex.value
+                                              ? 1
+                                              : 0),
+                                          backgroundColor: Colors.white,
+                                          valueColor:
+                                          const AlwaysStoppedAnimation<Color>(
+                                            Color(0xFF2EAED2),
+                                          ),
+                                          minHeight: 4,
+                                          borderRadius: BorderRadius.circular(12),
                                         ),
-                                        minHeight: 4,
-                                        borderRadius: BorderRadius.circular(12),
                                       ),
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
-                        ),
 
-                        // Bottom Info Card (unchanged)
-                        Positioned(
-                          bottom: 20,
-                          left: 10,
-                          right: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: const [
-                                  Icon(Icons.circle,
-                                      color: Color(0xFF00CD07), size: 12),
-                                  SizedBox(width: 4),
-                                  Text(
-                                    "Active",
+                          // Bottom Info Card (unchanged)
+                          Positioned(
+                            bottom: 20,
+                            left: 10,
+                            right: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: const [
+                                    Icon(Icons.circle,
+                                        color: Color(0xFF00CD07), size: 12),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      "Active",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 5),
+                                const Text(
+                                  "Jhon Mandela",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    buildTag("assets/image/w.png", "Wine"),
+                                    const SizedBox(width: 5),
+                                    buildTag("assets/image/g.png", "Gardening"),
+                                    const SizedBox(width: 5),
+                                    buildTag("assets/image/c.png", "Coffee"),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+              ),
+              SizedBox(
+                height: 400,
+                child: GestureDetector(
+                  onPanStart: (_) => _homeController.resetGesture(),
+                  onPanUpdate: (details) {
+                    _homeController.handleGesture(details.delta.dx);
+                  },
+                  onPanEnd: (_) {
+                    if (!_homeController.consumeGesture()) return;
+
+                    if (_homeController.dragDx <- 100) {
+                      // 👉 Right swipe = Like
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("👍 Liked"),
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 1),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                      _homeController.nextStory();
+                    } else if (_homeController.dragDx > 100) {
+                      // 👉 Left swipe = Dislike
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("👎 Disliked"),
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 1),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                      _homeController.nextStory(); // ⬅️ next image e jabe
+                    }
+
+                    // Reset card position after swipe
+                    _homeController.resetGesture();
+                  },
+                  onTapDown: (details) {
+                    final width = MediaQuery.of(context).size.width;
+                    if (details.globalPosition.dx < width / 2) {
+                      _homeController.previousStory();
+                    } else {
+                      _homeController.nextStory();
+                    }
+                  },
+                  child: Obx(() {
+                    double dx = _homeController.dragDx;
+
+                    return Transform.translate(
+                      offset: Offset(dx, 0),
+                      child: Transform.rotate(
+                        origin: Offset(0,200),
+                        angle: dx * 0.004, // tilt effect
+                        child: Stack(
+                          children: [
+                            // Image
+                            Positioned.fill(
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(()=> DetailsPage());
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        _homeController
+                                            .stories[_homeController.currentIndex.value],
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            // Progress bar (unchanged)
+                            Positioned(
+                              top: 20,
+                              left: 10,
+                              right: 10,
+                              child: Obx(
+                                    () => Row(
+                                  children: List.generate(
+                                    _homeController.stories.length,
+                                        (index) {
+                                      return Expanded(
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(horizontal: 2),
+                                          child: LinearProgressIndicator(
+                                            value: index ==
+                                                _homeController.currentIndex.value
+                                                ? _homeController.progressValue.value
+                                                : (index <
+                                                _homeController.currentIndex.value
+                                                ? 1
+                                                : 0),
+                                            backgroundColor: Colors.white,
+                                            valueColor:
+                                            const AlwaysStoppedAnimation<Color>(
+                                              Color(0xFF2EAED2),
+                                            ),
+                                            minHeight: 4,
+                                            borderRadius: BorderRadius.circular(12),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            // Bottom Info Card (unchanged)
+                            Positioned(
+                              bottom: 20,
+                              left: 10,
+                              right: 20,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: const [
+                                      Icon(Icons.circle,
+                                          color: Color(0xFF00CD07), size: 12),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        "Active",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    "Jhon Mandela",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 12,
+                                      fontSize: 32,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                "Jhon Mandela",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
+                                  const SizedBox(height: 10),
 
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  buildTag("assets/image/w.png", "Wine"),
-                                  const SizedBox(width: 5),
-                                  buildTag("assets/image/g.png", "Gardening"),
-                                  const SizedBox(width: 5),
-                                  buildTag("assets/image/c.png", "Coffee"),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      buildTag("assets/image/w.png", "Wine"),
+                                      const SizedBox(width: 5),
+                                      buildTag("assets/image/g.png", "Gardening"),
+                                      const SizedBox(width: 5),
+                                      buildTag("assets/image/c.png", "Coffee"),
+                                    ],
+                                  ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-            ),
+                      ),
+                    );
+                  }),
+                ),
+              )
+            ],
           )
 
         ],

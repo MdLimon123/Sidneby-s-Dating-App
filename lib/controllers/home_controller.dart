@@ -58,15 +58,7 @@ class HomeController extends GetxController{
     }
   }
 
-/// next in my story
-  void nextInMyStory(BuildContext context) {
-    final story = myStory.value!;
-    if (currentMediaIndex.value < story.mediaPaths.length - 1) {
-      currentMediaIndex.value++;
-    } else {
-      Get.back();
-    }
-  }
+
 
   /// prev in my story
   void prevInMyStory() {
@@ -128,6 +120,7 @@ class HomeController extends GetxController{
   void nextStory() {
     if (currentIndex.value < stories.length - 1) {
       currentIndex.value++;
+
     } else {
       currentIndex.value = 0;
     }
