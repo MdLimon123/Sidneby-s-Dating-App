@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/custom_switch.dart';
+import 'package:sindeby_dating_app/views/screen/Profile/AllSubScreen/edit_profile_screen.dart';
 
 import '../../base/bottom_menu..dart';
 
@@ -59,16 +61,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   _customContainer(
+                    onTap: (){
+                      Get.to(()=> EditProfileScreen());
+                    },
                     imagePath: 'assets/icons/person.svg',
                     text: 'Profile Update'
                   ),
                   SizedBox(height: 16,),
                   _customContainer(
+                    onTap: (){},
                       imagePath: 'assets/icons/subscription.svg',
                       text: 'Subscription'
                   ),
                   SizedBox(height: 16,),
                   _customContainer(
+                    onTap: (){},
                       imagePath: 'assets/icons/password.svg',
                       text: 'Password Change'
                   ),
@@ -144,33 +151,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
    _customContainer({required String imagePath,
-   required String text}) {
-    return Row(
-                  children: [
-                    Container(
-                      height: 42,
-                      width: 42,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xFF2EAED2).withValues(alpha: 0.20), width: 0.3),
+   required String text,
+   required Function() onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+                      Container(
+                        height: 42,
+                        width: 42,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Color(0xFF2EAED2).withValues(alpha: 0.20), width: 0.3),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(imagePath),
+                        ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(imagePath),
-                      ),
-                    ),
-                    SizedBox(width: 12,),
-                    Text(text,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textColor
-                    ),),
-                    Spacer(),
-                    Icon(Icons.navigate_next, size: 24, color: AppColors.textColor,)
+                      SizedBox(width: 12,),
+                      Text(text,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.textColor
+                      ),),
+                      Spacer(),
+                      Icon(Icons.navigate_next, size: 24, color: AppColors.textColor,)
 
-                  ],
-                );
+                    ],
+                  ),
+    );
   }
 
   _customAppbar() {

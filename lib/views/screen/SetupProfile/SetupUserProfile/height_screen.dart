@@ -174,6 +174,8 @@ class _HeightScreenState extends State<HeightScreen> {
             hintText: 'What are you into?',
           ),
           SizedBox(height: 15),
+
+
           if (selectedHobbies.isNotEmpty) ...[
             Wrap(
               spacing: 8,
@@ -232,6 +234,7 @@ class _HeightScreenState extends State<HeightScreen> {
             color: AppColors.textColor),
           ),
           const SizedBox(height: 12),
+
           Expanded(
             child: Wrap(
               spacing: 12,
