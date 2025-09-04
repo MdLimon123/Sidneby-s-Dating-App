@@ -6,6 +6,7 @@ import 'package:sindeby_dating_app/utils/app_colors.dart';
 import 'package:sindeby_dating_app/views/base/bottom_menu..dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_text_field.dart';
+import 'package:sindeby_dating_app/views/screen/Notification/notification_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -179,27 +180,32 @@ class _ExploreScreenState extends State<ExploreScreen> {
               color: AppColors.textColor,
             ),
           ),
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFF8FDFF),
-              border: Border.all(
-                color: Color(0xFF2EAED2).withValues(alpha: 0.20),
-                width: 0.3,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFF2EAED2).withValues(alpha: 0.15),
-                  offset: Offset(0, 1),
-                  spreadRadius: 1.5,
-                  blurRadius: 2,
+          InkWell(
+            onTap: (){
+              Get.to(()=> NotificationScreen());
+            },
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFF8FDFF),
+                border: Border.all(
+                  color: Color(0xFF2EAED2).withValues(alpha: 0.20),
+                  width: 0.3,
                 ),
-              ],
-            ),
-            child: Center(
-              child: SvgPicture.asset('assets/icons/notification.svg'),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFF2EAED2).withValues(alpha: 0.15),
+                    offset: Offset(0, 1),
+                    spreadRadius: 1.5,
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset('assets/icons/notification.svg'),
+              ),
             ),
           ),
         ],

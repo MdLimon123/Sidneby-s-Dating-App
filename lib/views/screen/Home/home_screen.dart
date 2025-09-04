@@ -10,6 +10,7 @@ import 'package:sindeby_dating_app/views/base/story_thumb.dart';
 import 'package:sindeby_dating_app/views/screen/Home/AllSubScreen/details_page.dart';
 import 'package:sindeby_dating_app/views/screen/Home/AllSubScreen/my_story_viewer.dart';
 import 'package:sindeby_dating_app/views/screen/Home/AllSubScreen/others_story_viewer.dart';
+import 'package:sindeby_dating_app/views/screen/Notification/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -189,23 +190,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
           Stack(
             children: [
-              
-            
-              Obx(
-               ()=> Container(
-                  height: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: AssetImage(
-                        _homeController
-                            .stories[_homeController.currentIndex.value-1],
-                      ),
-                      fit: BoxFit.cover,
+              Obx(() => Container(
+                height: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      _homeController.currentIndex.value > 0
+                          ? _homeController.stories[_homeController.currentIndex.value - 1]
+                          : _homeController.stories[_homeController.currentIndex.value], // fallback
                     ),
+                    fit: BoxFit.cover,
                   ),
                 ),
-              ),
+              )),
+
               SizedBox(
                 height: 400,
                 child: Obx(() {
@@ -562,27 +561,32 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFF8FDFF),
-              border: Border.all(
-                color: Color(0xFF2EAED2).withValues(alpha: 0.20),
-                width: 0.3,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFF2EAED2).withValues(alpha: 0.15),
-                  offset: Offset(0, 1),
-                  spreadRadius: 1.5,
-                  blurRadius: 2,
+          InkWell(
+            onTap: (){
+              Get.to(()=> NotificationScreen());
+            },
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFF8FDFF),
+                border: Border.all(
+                  color: Color(0xFF2EAED2).withValues(alpha: 0.20),
+                  width: 0.3,
                 ),
-              ],
-            ),
-            child: Center(
-              child: SvgPicture.asset('assets/icons/notification.svg'),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFF2EAED2).withValues(alpha: 0.15),
+                    offset: Offset(0, 1),
+                    spreadRadius: 1.5,
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset('assets/icons/notification.svg'),
+              ),
             ),
           ),
         ],
