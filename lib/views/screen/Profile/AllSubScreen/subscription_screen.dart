@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:sindeby_dating_app/utils/app_colors.dart';
-import 'package:sindeby_dating_app/views/base/appbar.dart';
 import 'package:sindeby_dating_app/views/base/custom_button.dart';
 import 'package:sindeby_dating_app/views/base/custom_radio_button.dart';
 
@@ -23,7 +23,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.secondaryBackgroundColor,
-        leading: Icon(Icons.arrow_back, color: AppColors.textColor,),
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+            child: Icon(Icons.arrow_back, color: AppColors.textColor,)),
         title: Text(
           "Subscription",
           style: TextStyle(
